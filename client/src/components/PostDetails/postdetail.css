@@ -1,0 +1,48 @@
+.media{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    object-fit: cover;
+    width: 100%;
+    max-height: 600px;
+}
+
+.card{
+    display: flex;
+    width: 100%;
+}
+
+.section{
+    margin-left: 10px;
+    border-radius: 20px;
+    flex: 1;
+}
+
+.imageSection{
+    margin-left: 20px;
+}
+
+.recommendedPosts{
+    display: flex;
+}
+
+.loadingPaper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 15px;
+    height: 39vh;
+}
+
+.commentsOuterContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.commentsInnerContainer{
+    height: 200px;
+    overflow-y: auto;
+    margin-right: 30px;
+}

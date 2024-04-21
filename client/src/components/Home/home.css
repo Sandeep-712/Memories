@@ -1,0 +1,12 @@
+.appBarsearch{
+    border-radius: 4;
+    margin-bottom: 1rem;
+    display: flex;
+    padding: 16px;
+}
+
+Paper{
+    border-radius: 4;
+    margin-top: 1rem;
+    padding: 16px;
+}

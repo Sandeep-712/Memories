@@ -1,0 +1,29 @@
+/* styles.css */
+.text_field {
+    /* margin: 8px; */
+    margin-bottom: 16px;
+    /* Equivalent to theme.spacing(1) */
+}
+
+.paper {
+    padding: 16px;
+    margin: 1px;
+    /* Equivalent to theme.spacing(2) */
+}
+
+
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.fileinput {
+    width: 97%;
+    margin: 10px 0;
+}
+
+.butt {
+    margin-bottom: 10;
+}
+
