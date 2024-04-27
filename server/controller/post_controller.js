@@ -35,18 +35,23 @@ export const getPost = async (req, res) => {
 
 
 export const getPostBySearch = async (req, res) => {
-    const { searchquery, tags } = req.query;
+    const { searchquery } = req.query;
 
     try {
-        const title = new RegExp(searchquery, 'i');
+        // Create a regular expression for the search query with case-insensitive flag
+        const titleRegex = new RegExp(searchquery, 'i');
 
-        const posts = await post_model.find({ $or: [{ title }, { tags: { $in: tags.split(',') } }] });
+        // Search for posts where the title matches the regular expression
+        const posts = await post_model.find({ title: { $regex: titleRegex } });
 
+        // Send the found posts back to the client
         res.json({ data: posts });
     } catch (error) {
-        res.status(404).json({ message: error.message });
+        // If an error occurs, send an error response
+        res.status(500).json({ message: error.message });
     }
 }
+
 
 export const createPost = async (req, res) => {
     const post = req.body;
@@ -95,7 +100,7 @@ export const likePost = async (req, res) => {
 
     const post = await post_model.findById(id);
 
-    const index = post.likes.findIndex((ids) => ids = String(req.userID));
+    const index = post.likes.findIndex((ids) => ids === String(req.userID));
 
     if (index === -1) {
         post.likes.push(req.userID);
@@ -104,7 +109,7 @@ export const likePost = async (req, res) => {
     }
 
     const updatePost = await post_model.findByIdAndUpdate(id, post, { new: true });
-    console.log(updatePost);
+    // console.log(updatePost);
 
     res.status(200).json(updatePost);
 };

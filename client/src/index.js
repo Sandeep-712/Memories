@@ -5,12 +5,12 @@ import App from './App';
 // import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
-import reducers from './reducers';
+import {reducers} from './reducers';
 // Corrected import
 import { thunk } from 'redux-thunk';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const store = createStore(reducers, compose(applyMiddleware(thunk)));
+const store = createStore(reducers,{}, compose(applyMiddleware(thunk)));
 
 root.render(
   <Provider store={store}>

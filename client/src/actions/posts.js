@@ -29,12 +29,12 @@ export const getPostBySearch = (searchQuery) => async (dispatch) => {
     try {
         dispatch({ type: START_LOADING });
         const { data: { data } } = await api.fetchPostBySearch(searchQuery);
-        dispatch({ type: FETCH_By_Search, payload: data })
+        dispatch({ type: FETCH_By_Search, payload: {data} })
         dispatch({ type: END_LOADING });
     } catch (error) {
         console.log(error);
     }
-}
+};
 
 export const createPost = (post, navigate) => async (dispatch) => {
     try {

@@ -4,7 +4,6 @@ import Posts from '../Posts/Posts';
 import Form from '../Form/Form';
 import { getPostBySearch } from '../../actions/posts';
 import { useNavigate, useLocation } from 'react-router-dom';
-import Chip from '@mui/material/Chip';
 import { useDispatch } from 'react-redux';
 
 
@@ -25,8 +24,6 @@ function Home() {
     const searchQuery = query.get('searchQuery');
 
     const [Search, setSearch] = useState('');
-    const [tags, settags] = useState([]);
-
 
     const handleKey = (e) => {
         if (e.keyCode === 13) {
@@ -34,13 +31,10 @@ function Home() {
         }
     };
 
-    const handleAdded = (tag) => settags([...tags, tag]);
-    const handleDel = (tagtodel) => settags(tags.filter((tag) => tag !== tagtodel));
-
     const searchPost = () => {
-        if (Search.trim() || tags) {
-            dispatch(getPostBySearch({ Search, tags: tags.join(',') }));
-            navigate(`/posts/search?searchQuery=${Search || 'none'}&tags=${tags.join(',')}`);
+        if (Search.trim()) {
+            dispatch(getPostBySearch({ Search}));
+            navigate(`/posts/search?searchQuery=${Search}`);
         } else {
             navigate('/');
         }
@@ -57,19 +51,11 @@ function Home() {
                     <Grid item xs={12} sm={4} md={4}>
                         <AppBar className='appBarsearch' position='static' color='inherit'>
                             <TextField name='search' variant='outlined' label='Search Memories' fullWidth value={Search} onKeyDown={handleKey} onChange={(e) => setSearch(e.target.value)} />
-                            <Chip
-                                style={{ margin: "10px 0" }}
-                                value={tags}
-                                onClick={(chip) => handleAdded(chip)}
-                                onDelete={(chip) => handleDel(chip)}
-                                label='Search Tags'
-                                variant='outlined'
-                            />
                             <Button onClick={searchPost} className='searchButton' variant="contained" color="primary">Search</Button>
 
 
                             <Form currentId={currentId} setcurrentId={setcurrentId} />
-                            {(!searchQuery && !tags.length) && (
+                            {(!searchQuery) && (
                                 <Paper elevation={6} >
                                     <Pagein page={page} />
                                 </Paper>

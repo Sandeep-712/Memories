@@ -12,7 +12,7 @@ function Posts({ setcurrentId }) {
         isLoading ? <CircularProgress /> : (
             <Grid className='container' container alignItems='stretch' spacing='3'>
                 {
-                    posts.map((post) => (
+                    posts?.map((post) => (
                         <Grid key={post._id} item xs={12} sm={12} md={6} lg={4}>
                             <Post post={post} setcurrentId={setcurrentId} />
                         </Grid>
@@ -20,7 +20,7 @@ function Posts({ setcurrentId }) {
                 }
             </Grid>
         )
-    )
-}
+    );
+};
 
 export default Posts
